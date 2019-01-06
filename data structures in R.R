@@ -58,7 +58,7 @@ library(dplyr)
 df%>% group_by(course)%>% summarise(mean(marks2),mean(marks1))
 df%>% group_by(course)%>% select(marks1)%>% top_n(2)
 df%>%sample_n(3)
-
+library(wordcloud2)
 
 
 #factors----
