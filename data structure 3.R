@@ -93,6 +93,9 @@ table(course)
 #forming a data frame
 df=data.frame(rollno,name,marks1,marks2,marks3,course,gender)
 df
+
+?write.table
+write.csv(df,file = "mishra.csv")
 summary(df)
 df=data.frame(rollno,name,marks1,marks2,marks3,course,gender,stringsAsFactors = F)
 summary(df)
@@ -122,6 +125,15 @@ View(mishra)
 
 library(dplyr)
 df%>%group_by(course,gender)%>%summarise(sum(marks1),sum(marks2))
+df%>%group_by(course)%>%summarise(sum(marks2))
+df%>%group_by(gender)%>%summarise(sum(marks1))
+df%>%filter(gender=='F')
+df%>%filter(course=='bba'&gender=='F')
+df%>%filter(course=='bba'|gender=='F')
+
+
+
+df%>%group_by(course,gender)%>%summarise(sum(marks1),sum(marks2))
 df%>%group_by(course)%>%select(marks2)%>%top_n(3)
 df%>%gropu
 df%>%group_by(course)%>%select(marks3)%>%top_n(5)
@@ -134,3 +146,11 @@ table(df)
 dim(df)
 sample_n(10,data=df)
 df%>%sample_frac(0.3)
+
+
+piyush=data.frame(name,marks1,gender)
+ashu=data.frame(name,marks2,course)
+View(piyush)
+m4=merge(piyush,ashu,by.x = 'name',by.y = 'name',all.x = T)
+View(m4)
+write.csv(m4,file="m4.csv")
